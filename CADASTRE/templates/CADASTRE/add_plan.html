@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Add Plan{% endblock %}
+{% block heading %}Add Plan{% endblock %}
+
+{% block content %}
+{% if error_message %}
+  <p class="error">{{ error_message }}</p>
+{% endif %}
+<form method="post">
+  {% csrf_token %}
+  <label for="plannumber">Plan number:</label>
+  <input type="text" name="plannumber" required><br>
+  <label for="area">Area:</label>
+  <input type="text" name="area"><br>
+  <label for="location">Location:</label>
+  <input type="text" name="location"><br>
+  <label for="surveyor">Surveyor:</label>
+  <input type="text" name="surveyor"><br>
+  <label for="coordinatesystem">Coordinate system:</label>
+  <input type="text" name="coordinatesystem"><br>
+  <label for="date">Date:</label>
+  <input type="date" name="date"><br>
+  <label for="num_coordinates">Number of Coordinates:</label>
+  <input type="number" name="num_coordinates" id="num_coordinates" min="1" value="1" required><br>
+  
+  <div id="coordinates">
+    <label for="pillarnumber">Pillar number:</label>
+    <input type="text" name="pillarnumber[]"><br>
+    <label for="eastings">Eastings:</label>
+    <input type="text" name="eastings[]"><br>
+    <label for="northings">Northings:</label>
+    <input type="text" name="northings[]"><br>
+    <!-- Repeat the above inputs for each additional coordinate -->
+  </div>
+  
+  <button type="button" id="addCoordinateButton">Add Coordinate</button>
+  <input type="submit" value="Add plan">
+</form>
+
+<script>
+  // Get the necessary HTML elements
+  const numCoordinatesInput = document.getElementById('num_coordinates');
+  const coordinatesDiv = document.getElementById('coordinates');
+  const addCoordinateButton = document.getElementById('addCoordinateButton');
+  
+  // Add event listener to add coordinate button
+  addCoordinateButton.addEventListener('click', () => {
+    // Get the number of coordinates that have already been added
+    const numCoordinates = coordinatesDiv.children.length / 4;
+    
+    // Check if the maximum number of coordinates has been reached
+    if (numCoordinates === numCoordinatesInput.valueAsNumber) {
+      alert('Maximum number of coordinates reached');
+      return;
+    }
+    
+    // Create the HTML for the new coordinate inputs
+    const coordinateInputs = `
+      <label for="pillarnumber">Pillar number:</label>
+      <input type="text" name="pillarnumber[]"><br>
+      <label for="eastings">Eastings:</label>
+      <input type="text" name="eastings[]"><br>
+      <label for="northings">Northings:</label>
+      <input type="text" name="northings[]"><br>
+    `;
+    
+    // Add the new coordinate inputs to the coordinates div
+    coordinatesDiv.insertAdjacentHTML('beforeend', coordinateInputs);
+  });
+</script>
+{% endblock %}

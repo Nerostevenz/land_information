@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %} - Land Information</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1 class="logo"><a href="{% url 'home' %}" aria-label="Go to homepage">Land Information</a></h1>
+			<nav>
+				<ul>
+					<li{% if request.path == '/add_plan/' %} class="active"{% endif %}><a href="{% url 'add_plan' %}">Add Plan</a></li>
+					<li{% if request.path == '/query_plan/' %} class="active"{% endif %}><a href="{% url 'query_plan' %}">Query Plan</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main>
+		<div class="container">
+			{% if error_message %}
+			<div class="alert alert-danger" role="alert">
+				{{ error_message }}
+			</div>
+			{% endif %}
+			{% block content %}{% endblock %}
+		</div>
+	</main>
+	<footer>
+		<div class="container">
+			<p>&copy; 2023 Land Information. All rights reserved.</p>
+		</div>
+	</footer>
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

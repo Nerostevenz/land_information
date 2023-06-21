@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Query Result{% endblock %}
+{% block heading %}Query Result{% endblock %}
+
+{% block content %}
+{% if plan %}
+  <p>Plan number: {{ plan.plannumber }}</p>
+  <p>Area: {{ plan.area }}</p>
+  <p>Location: {{ plan.location }}</p>
+  <p>Surveyor: {{ plan.surveyor }}</p>
+  <p>Coordinate system: {{ plan.coordinatesystem }}</p>
+  <p>Date: {{ plan.date }}</p>
+  <p>Number of coordinates: {{ coords.count }}</p>
+  <ul>
+    {% for coord in coords %}
+      <li>Pillar number: {{ coord.pillarnumber }}, Eastings: {{ coord.eastings }}, Northings: {{ coord.northings }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No plan found for the given pillarnumber.</p>
+{% endif %}
+{% endblock %}

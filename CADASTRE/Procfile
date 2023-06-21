@@ -1,0 +1,1 @@
+web gunicorn cadastre.wsgi:application --log-file -

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block heading %}
+  <div class="heading">
+    <h1 class="logo"><a href="{% url 'home' %}" aria-label="Go to homepage">Land Information</a></h1>
+    <h2>Welcome to My Site</h2>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="intro">
+    <p>This is the home page. Here, you can find information about my services and projects, as well as news and updates about my work.</p>
+  </div>
+  <div class="services">
+    <h3>What I Offer</h3>
+    <ul>
+      <li>Land Information</li>
+      <li>Professional Guide</li>
+    </ul>
+  </div>
+  <div class="projects">
+    <h3>My Latest Projects</h3>
+    <ul>
+      <li><a href="#">Project 1</a></li>
+      <li><a href="#">Project 2</a></li>
+      <li><a href="#">Project 3</a></li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block styles %}
+  <style>
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 50px;
+    }
+    .logo {
+      font-size: 36px;
+      font-weight: 700;
+      color: #333;
+      text-transform: uppercase;
+    }
+    .intro {
+      margin-bottom: 50px;
+    }
+    .services, .projects {
+      margin-bottom: 50px;
+    }
+    .services h3, .projects h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+      text-transform: uppercase;
+    }
+    .services ul, .projects ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .services li, .projects li {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+    .projects li a {
+      color: #333;
+      text-decoration: none;
+    }
+    .projects li a:hover {
+      text-decoration: underline;
+    }
+  </style>
+{% endblock %}
